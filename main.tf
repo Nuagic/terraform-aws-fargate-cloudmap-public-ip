@@ -21,7 +21,7 @@ resource "aws_lambda_function" "this" {
   function_name    = var.name
   handler          = "lambda_function.lambda_handler"
   memory_size      = 128
-  role             = "arn:aws:iam::340589625048:role/service-role/register-fluence-node-dev"
+  role             = aws_iam_role.this.arn
   filename         = data.archive_file.this.output_path
   source_code_hash = data.archive_file.this.output_base64sha256
   runtime          = "python3.9"
